@@ -1,0 +1,31 @@
+{
+  "name": "node-jose-browserified",
+  "version": "0.7.1",
+  "description": "Browserified node-jose",
+  "main": "dist/node-jose.js",
+  "authors": [
+    "jean moldovan <jean.moldovan@gmail.com>"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "keywords": [
+    "node-jose",
+    "browserify"
+  ],
+  "homepage": "https://github.com/jean-moldovan/node-jose-browserified",
+  "_release": "0.7.1",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.7.1",
+    "commit": "b37d5648f82e3bd42bb4a4bc386d7925dd9d2522"
+  },
+  "_source": "https://github.com/jean-moldovan/node-jose-browserified.git",
+  "_target": "^0.7.1",
+  "_originalSource": "node-jose-browserified",
+  "_direct": true
+}
