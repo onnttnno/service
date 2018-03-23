@@ -9,6 +9,7 @@
   "author": "onnt",
   "license": "ISC",
   "dependencies": {
+    "ejs": "^2.5.7",
     "jQuery": "^1.7.4",
     "node-jose": "^0.11.0",
     "request": "^2.85.0"
