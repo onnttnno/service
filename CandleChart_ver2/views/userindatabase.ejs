@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Chart.Js with MongoDB & Node.Js</title>
+</head>
+  
+  <script>
+    window.onload = function () {
+    var dataPoints = [];
+    var chart = new CanvasJS.Chart("chartContainer", {
+      animationEnabled: true,
+      theme: "light2", // "light1", "light2", "dark1", "dark2"
+      exportEnabled: true,
+      title: {
+        text: "Netflix Stock Price in 2016"
+      },
+      subtitles: [{
+        text: "Weekly Averages"
+      }],
+      axisX: {
+        interval: 1,
+        valueFormatString: "MMM"
+      },
+      axisY: {
+        includeZero: false,
+        prefix: "$",
+        title: "Price"
+      },
+      toolTip: {
+        content: "Date: {x}<br /> <strong>Price:</strong><br /> Open: {y[0]}, Close: {y[3]}<br />High: {y[1]}, Low: {y[2]}"
+      },
+      data: [{
+        type: "candlestick",
+        yValueFormatString: "$##0.00",
+        dataPoints: dataPoints
+      }]
+    });
+    
+    //$.get("https://cors.io/?https://canvasjs.com/data/gallery/javascript/netflix-stock-price.csv", getDataPointsFromCSV);
+    var file = [<%= items %>];
+    getDataPointsFromJSON(file);
+  
+
+    function getDataPointsFromJSON(file) {
+      
+      for (var i = 0; i < file.length; i++) {
+       // if (file[i].length > 0) {
+          //var points = file[i]/*.split(",")*/;
+          var datastring =  file[i].Date+"";
+          var year = datastring.substring(0,4);
+          var month = datastring.substring(4,6);
+          var day = datastring.substring(6,8);
+
+          var date = new Date(year, month-1, day);
+          
+
+          dataPoints.push({
+            x: new Date(year, month-1, day) ,
+            y: [
+              file[i].Open,
+              file[i].High,
+              file[i].Low,
+              file[i].Close
+              /* parseFloat(points[1]),
+              parseFloat(points[2]),
+              parseFloat(points[3]),
+              parseFloat(points[4])*/
+            ]
+          });
+        //}
+      }
+      chart.render();
+    }
+    
+    }
+  </script>
+
+<body>
+  <div id="chartContainer" style="height: 600px; width: 100%;"></div>
+  <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+  <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>  
+</body>
+</html>
